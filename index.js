@@ -45,6 +45,7 @@ function cachingProvider(videoId, res) {
 }
 
 app.get("/download", async (req, res) => {
+ try {
   const videoUrl = req.query.url;
   res.setHeader("Content-Type", "video/mp4");
 
@@ -129,6 +130,10 @@ const QUALITY_ITAGS = {
             });
         });
     });
+ }
+catch(error){
+        console.error(error);
+}
 });
 
 app.listen(port, () => {
